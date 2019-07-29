@@ -165,6 +165,7 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     # display total travel time
+    # here we convert the travel time in minutes to weeks, days, hours & minutes
     total_travel_time_m = df['Trip Duration'].sum()
     total_travel_time_w = total_travel_time_m // (60*24*7)
     total_travel_time_wr = total_travel_time_m % (60*24*7)
