@@ -98,6 +98,17 @@ def filter_data(df, city, month, day):
     if day != 'all':
         df = df[df['weekday'] == day]
 
+    #asking user whether to view more raw data or proceed with stats.
+    raw_data = 'yes'
+    i = 5
+    print(df.head(i))
+    
+    while raw_data == 'yes' or raw_data == 'y':
+        raw_data = input('Do you want to see more five (5) raws of data? Enter \'Yes\' to show or any key to skip.  ').lower()
+        if raw_data == 'yes' or raw_data == 'y':
+            i += 5
+            print(df.head(i).tail(5))
+
     return df
 
 def time_stats(df, month, day):
@@ -168,21 +179,20 @@ def trip_duration_stats(df):
     # here we convert the travel time in minutes to weeks, days, hours & minutes
     total_travel_time_m = df['Trip Duration'].sum()
     total_travel_time_w = total_travel_time_m // (60*24*7)
-    total_travel_time_wr = total_travel_time_m % (60*24*7)
-    total_travel_time_d = total_travel_time_wr // (60*24)
-    total_travel_time_dr = total_travel_time_wr % (60*24)
-    total_travel_time_h = total_travel_time_dr // (60)
-    total_travel_time_hr = total_travel_time_dr % (60)
-    total_travel_time_mr = total_travel_time_hr
+    total_travel_time_w% = total_travel_time_m % (60*24*7)
+    total_travel_time_d = total_travel_time_w% // (60*24)
+    total_travel_time_d% = total_travel_time_w% % (60*24)
+    total_travel_time_h = total_travel_time_d% // (60)
+    total_travel_time_h% = total_travel_time_d% % (60)
 
-    print('Total travel time for this filter is: {} weeks, {} days, {} hrs, {} mins'.format(total_travel_time_w, total_travel_time_d, total_travel_time_h, total_travel_time_mr))
+    print('Total travel time for this filter is: {} weeks, {} days, {} hrs, {} mins'.format(total_travel_time_w, total_travel_time_d, total_travel_time_h, total_travel_time_h%))
     
     # display mean travel time
     travel_time_avg = int(df['Trip Duration'].mean())
     travel_time_avg_h = int(travel_time_avg // 60)
-    travel_time_avg_hr = int(travel_time_avg % 60)
+    travel_time_avg_h% = int(travel_time_avg % 60)
 
-    print('Travel time average for this filter is: {} mins or {} hrs, {} mins'.format(travel_time_avg, travel_time_avg_h, travel_time_avg_hr ))
+    print('Travel time average for this filter is: {} mins or {} hrs, {} mins'.format(travel_time_avg, travel_time_avg_h, travel_time_avg_h% ))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -217,22 +227,8 @@ def main():
     while True:
         city, df0 = load_data()
         month, day = get_filters(df0)
-        print(city, month, day)
         
         df = filter_data(df0, city, month, day)
-        
-        #print(df.info())
-
-        #asking user whether to view more raw data or proceed with stats.
-        raw_data = 'yes'
-        i = 5
-        print(df.head(i))
-        
-        while raw_data == 'yes' or raw_data == 'y':
-            raw_data = input('Do you want to see more five (5) raws of data? Enter \'Yes\' to show or any key to skip.  ').lower()
-            if raw_data == 'yes' or raw_data == 'y':
-                i += 5
-                print(df.head(i).tail(5))
 
         time_stats(df, month, day)
         station_stats(df)
