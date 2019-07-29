@@ -1,6 +1,6 @@
 ### Date created
-Bikeshare_2 project is first created on July 21st, 2019
-this readme file is created on July 29th, 2019
+* Bikeshare_2 project is first created on July 21st, 2019
+* this readme file is created on July 29th, 2019
 
 ### Project Title
 #US Bike Share Data Analysis :bike:
@@ -15,14 +15,14 @@ City | Month | Day of the week
 Chicago | All | All
 Newyork | Jan | Sun
 Washington | Feb | Mon
-  | Mar | Tue
-  | Jun | Wed
-  | Jul | Thu
-  | Aug | Fri
-  | Sep | Sat
-  | Oct |  
-  | Nov |  
-  | Dec |  
+ _ | Mar | Tue
+ _ | Jun | Wed
+ _ | Jul | Thu
+ _ | Aug | Fri
+ _ | Sep | Sat
+ _ | Oct | _ 
+ _ | Nov | _
+ _ | Dec | _ 
 
 ### Files used
 * Chicago.csv
