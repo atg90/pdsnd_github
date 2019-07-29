@@ -98,6 +98,17 @@ def filter_data(df, city, month, day):
     if day != 'all':
         df = df[df['weekday'] == day]
 
+    #asking user whether to view more raw data or proceed with stats.
+    raw_data = 'yes'
+    i = 5
+    print(df.head(i))
+    
+    while raw_data == 'yes' or raw_data == 'y':
+        raw_data = input('Do you want to see more five (5) raws of data? Enter \'Yes\' to show or any key to skip.  ').lower()
+        if raw_data == 'yes' or raw_data == 'y':
+            i += 5
+            print(df.head(i).tail(5))
+
     return df
 
 def time_stats(df, month, day):
@@ -215,22 +226,8 @@ def main():
     while True:
         city, df0 = load_data()
         month, day = get_filters(df0)
-        print(city, month, day)
         
         df = filter_data(df0, city, month, day)
-        
-        #print(df.info())
-
-        #asking user whether to view more raw data or proceed with stats.
-        raw_data = 'yes'
-        i = 5
-        print(df.head(i))
-        
-        while raw_data == 'yes' or raw_data == 'y':
-            raw_data = input('Do you want to see more five (5) raws of data? Enter \'Yes\' to show or any key to skip.  ').lower()
-            if raw_data == 'yes' or raw_data == 'y':
-                i += 5
-                print(df.head(i).tail(5))
 
         time_stats(df, month, day)
         station_stats(df)
