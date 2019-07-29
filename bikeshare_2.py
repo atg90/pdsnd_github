@@ -167,21 +167,20 @@ def trip_duration_stats(df):
     # display total travel time
     total_travel_time_m = df['Trip Duration'].sum()
     total_travel_time_w = total_travel_time_m // (60*24*7)
-    total_travel_time_wr = total_travel_time_m % (60*24*7)
-    total_travel_time_d = total_travel_time_wr // (60*24)
-    total_travel_time_dr = total_travel_time_wr % (60*24)
-    total_travel_time_h = total_travel_time_dr // (60)
-    total_travel_time_hr = total_travel_time_dr % (60)
-    total_travel_time_mr = total_travel_time_hr
+    total_travel_time_w% = total_travel_time_m % (60*24*7)
+    total_travel_time_d = total_travel_time_w% // (60*24)
+    total_travel_time_d% = total_travel_time_w% % (60*24)
+    total_travel_time_h = total_travel_time_d% // (60)
+    total_travel_time_h% = total_travel_time_d% % (60)
 
-    print('Total travel time for this filter is: {} weeks, {} days, {} hrs, {} mins'.format(total_travel_time_w, total_travel_time_d, total_travel_time_h, total_travel_time_mr))
+    print('Total travel time for this filter is: {} weeks, {} days, {} hrs, {} mins'.format(total_travel_time_w, total_travel_time_d, total_travel_time_h, total_travel_time_h%))
     
     # display mean travel time
     travel_time_avg = int(df['Trip Duration'].mean())
     travel_time_avg_h = int(travel_time_avg // 60)
-    travel_time_avg_hr = int(travel_time_avg % 60)
+    travel_time_avg_h% = int(travel_time_avg % 60)
 
-    print('Travel time average for this filter is: {} mins or {} hrs, {} mins'.format(travel_time_avg, travel_time_avg_h, travel_time_avg_hr ))
+    print('Travel time average for this filter is: {} mins or {} hrs, {} mins'.format(travel_time_avg, travel_time_avg_h, travel_time_avg_h% ))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
